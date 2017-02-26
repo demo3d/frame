@@ -29,11 +29,12 @@ class Billboard extends Base {
       height: ${RESOLUTION / SUPER_SAMPLING}px !important;
       margin: 0;
       padding: 0;
+      font-size: 24px;
       box-sizing: border-box;
       background: white;
     `;
 
-    this.div.innerHTML = element.innerHTML.replace(/^....\[CDATA\[/, '').replace(/]]-->$/, '');
+    this.div.innerHTML = element.innerHTML.replace(/^....\[CDATA\[/, '').replace(/\]\](>|&gt;)$/, '');
 
     // Array.from(this.div.querySelectorAll('img')).forEach((img) => {
     //   img.setAttribute('crossOrigin', 'anonymous');
@@ -49,7 +50,7 @@ class Billboard extends Base {
         const texture = new THREE.Texture(canvas);
 
         var geometry = new THREE.BoxGeometry(1, 1, 1);
-        var material = new THREE.MeshBasicMaterial({
+        var material = new THREE.MeshLambertMaterial({
           map: texture
         });
         const mesh = new THREE.Mesh(geometry, material);

@@ -27,7 +27,7 @@ class Renderer {
     this.connector = connector;
 
     // 1 shit, 2 ok, 3 good
-    window.gpuPerformance = 3; // localStorage.getItem('gpu-quality') ? parseInt(localStorage.getItem('gpu-quality'), 10) : 1;
+    window.gpuPerformance = 2; // localStorage.getItem('gpu-quality') ? parseInt(localStorage.getItem('gpu-quality'), 10) : 1;
 
     this.initialize();
     this.observe();
@@ -209,7 +209,7 @@ class Renderer {
     directionalLight.target.position.set(0, 0, 0);
     directionalLight.castShadow = true;
     directionalLight.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(25, 1, 10, 500));
-    // directionalLight.shadow.bias = -0.00001;
+    directionalLight.shadow.bias = -0.00001;
 
     var resolution;
 
@@ -218,7 +218,7 @@ class Renderer {
         resolution = 1;
         break;
       case 2:
-        resolution = 512;
+        resolution = 1024;
         break;
       case 3:
         resolution = 2048;
@@ -233,7 +233,7 @@ class Renderer {
     directionalLight.position.set(-1, 1, -1);
     this.scene.add(directionalLight);
 
-    var light = new THREE.AmbientLight(0x707070);
+    var light = new THREE.AmbientLight(0x505050);
     this.scene.add(light);
   }
 
