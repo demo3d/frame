@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "budo index.js -- -t [ babelify --presets [ es2015 ] ]",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "semistandard"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +29,14 @@
           ]
         }
       ]
+    ]
+  },
+  "devDependencies": {
+    "semistandard": "*"
+  },
+  "semistandard": {
+    "ignore": [
+      "/src/vendor/**"
     ]
   }
 }

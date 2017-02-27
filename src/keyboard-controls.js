@@ -80,4 +80,4 @@ module.exports = class KeyboardControls extends EventEmitter {
       v.y = -speed;
     }
   }
-}
+};

@@ -35,15 +35,6 @@ class Base extends THREE.Object3D {
     assert(element);
     this.userData = element;
     this.oldAttributes = {};
-    
-    // const uuid = this.userData.getAttribute('data-uuid');
-    // assert(uuid);
-
-    // if (!uuid) {
-    // }
-
-    // // Override the three.js one, may be a cause of bugs, but seems ok for now
-    // this.uuid = uuid;
   }
 
   get uuid () {
@@ -100,7 +91,7 @@ class Base extends THREE.Object3D {
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(repeat.x, repeat.y);
       }
-      
+
       return texture;
     }
   }

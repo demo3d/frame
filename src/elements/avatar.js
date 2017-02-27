@@ -1,4 +1,4 @@
-/* globals Audio AudioContext URL */
+/* globals Audio URL */
 
 const THREE = require('three');
 const Base = require('./base');
@@ -49,7 +49,7 @@ class Avatar extends Base {
 
     if (packet.initiator) {
       if (!this.recievingPeer) {
-        this.recievingPeer = new SimplePeer({ config: CONFIG, initiator: false, trickle: false});
+        this.recievingPeer = new SimplePeer({config: CONFIG, initiator: false, trickle: false});
 
         this.recievingPeer.on('signal', (data) => {
           this.connector.send('signal', {

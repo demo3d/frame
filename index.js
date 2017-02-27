@@ -1,10 +1,10 @@
-/* globals AudioContext, DOMParser, WebSocket */
+/* globals DOMParser */
 
 const Renderer = require('./src/renderer');
-const url = require('url');
+// const url = require('url');
 const assert = require('assert');
 const EventEmitter = require('events');
-const morphdom = require('morphdom');
+// const morphdom = require('morphdom');
 
 // WebVR polyfill doesnt detect gear vr correctly
 if (!navigator.getVRDisplays) {
@@ -26,6 +26,8 @@ class Connector extends EventEmitter {
 
     return;
 
+    /*
+
     this.socket = new WebSocket(url);
 
     this.socket.onopen = () => {
@@ -39,7 +41,7 @@ class Connector extends EventEmitter {
         var message;
 
         morphdom(this.scene, `<a-scene>${event.data}</a-scene>`);
-        
+
         // try {
         //   message = this.parseMessage(event.data);
         // } catch (e) {
@@ -69,6 +71,8 @@ class Connector extends EventEmitter {
     document.addEventListener('visibilitychange', this.onVisibilityChange.bind(this));
 
     setInterval(() => this.tick(), 1000 / this.frequency);
+
+    */
   }
 
   getAvatarByUUID (uuid) {
@@ -281,5 +285,5 @@ window.startScene = function () {
 };
 
 setTimeout(() => {
-  startScene();
+  window.startScene();
 }, 500);

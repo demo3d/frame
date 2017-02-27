@@ -28,7 +28,7 @@ class StlModel extends Base {
   apply () {
     super.apply();
 
-    const material = new THREE.MeshPhongMaterial({ 
+    const material = new THREE.MeshPhongMaterial({
       specular: 0xffffff,
       color: '#00aaff',
       shininess: 200

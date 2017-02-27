@@ -1,4 +1,4 @@
-/* globals MutationObserver, requestAnimationFrame*/
+/* globals MutationObserver, requestAnimationFrame */
 
 const THREE = require('three');
 const CANNON = require('cannon');
@@ -352,9 +352,7 @@ class Renderer {
 
       var q = new THREE.Quaternion().fromArray(pose.orientation);
 
-      if (true) { // !this.getControl(GamepadControls).active) {
-        this.camera.quaternion.copy(q);
-      }
+      this.camera.quaternion.copy(q);
 
       if (pose.position) {
         this.camera.position.fromArray(pose.position);

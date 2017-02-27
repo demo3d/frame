@@ -34,7 +34,7 @@ class Billboard extends Base {
       background: white;
     `;
 
-    this.div.innerHTML = element.innerHTML.replace(/^....\[CDATA\[/, '').replace(/\]\](>|&gt;)$/, '');
+    this.div.innerHTML = element.innerHTML.replace(/^....\[CDATA\[/, '').replace(/]](>|&gt;)$/, '');
 
     // Array.from(this.div.querySelectorAll('img')).forEach((img) => {
     //   img.setAttribute('crossOrigin', 'anonymous');

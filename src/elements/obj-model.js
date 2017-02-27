@@ -15,7 +15,7 @@ function onProgress () {
 }
 
 function onError (err) {
-  // console.error(err);
+  console.error(err);
 }
 
 class ObjModel extends Base {
