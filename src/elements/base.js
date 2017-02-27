@@ -140,10 +140,16 @@ class Base extends THREE.Object3D {
     this.lastUpdate += dt;
 
     if (this.lastUpdate < 1.0 / this.frequency) {
-      this.position.copy(this.oldPosition).lerp(this.newPosition, 1.0 * this.frequency * this.lastUpdate);
+      if (this.oldPosition && this.newPosition) {
+        this.position.copy(this.oldPosition).lerp(this.newPosition, 1.0 * this.frequency * this.lastUpdate);
+      }
+      if (this.oldQuaternion && this.newQuaternion) {
+        this.quaternion.copy(this.oldQuaternion).slerp(this.newQuaternion, 1.0 * this.frequency * this.lastUpdate);
+      }
     } else {
       this.tick = null;
       this.position.copy(this.newPosition);
+      this.quaternion.copy(this.newQuaternion);
     }
   }
 
@@ -172,7 +178,19 @@ class Base extends THREE.Object3D {
   parseRotation () {
     if (this.hasAttribute('rotation')) {
       const q = createQuaternion(this.getAttribute('rotation'));
-      this.quaternion.copy(q);
+
+      // fixme - potential race condition where position and rotation are
+      // set in messages that aren't 200ms apart
+      if (this.newQuaternion) {
+        this.lastUpdate = 0;
+        this.oldQuaternion = this.quaternion.clone();
+        this.newQuaternion = q;
+
+        this.tick = this._tick.bind(this);
+      } else {
+        this.newQuaternion = q;
+        this.quaternion.copy(q);
+      }
     }
   }
 

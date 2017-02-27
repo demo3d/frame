@@ -24,7 +24,9 @@
     <a-scene>
       <a-sky texture="images/sky.png"></a-sky>
 
-      <a-box color='#f0a' position="0 0.5 -10"></a-box>
+      <a-box color='#f0a' position="-1.5 0.5 -10"></a-box>
+      <a-box id='beep' color='#f70' position="0 0.5 -10"></a-box>
+      <a-box color='#0af' position="1.5 0.5 -10"></a-box>
 
       <a-plane rotation="-90 0 0" scale="256 256 1" position="0.5 0 0.5" texture="images/hex.png" repeat='64 64'></a-plane>
 
@@ -45,5 +47,18 @@
       ]]></a-billboard>
     </a-scene>
     <script src="index.js"></script>
+
+    <script>
+      let t = 0;
+      const beep = document.querySelector('#beep');
+
+      setInterval(() => {
+        t += 1;
+
+        const p = Math.abs(Math.sin(t / 6) * 3) + 0.5;
+        beep.setAttribute('position', `0 ${p} -10`);
+        beep.setAttribute('rotation', `0 ${t * 10} 0`);
+      }, 1000 / 5);
+    </script>
   </body>
 </html>
